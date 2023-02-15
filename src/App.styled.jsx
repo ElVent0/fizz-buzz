@@ -11,5 +11,5 @@ export const Backdrop = styled.div`
 
 export const Content = styled.div`
   width: 240px;
-  height: 292px;
+  height: 312px;
 `;
