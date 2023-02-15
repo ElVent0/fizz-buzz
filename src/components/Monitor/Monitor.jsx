@@ -14,7 +14,7 @@ import CountUp from "react-countup";
 
 const Monitor = ({
   gameStage,
-  onStart,
+  onStartGame,
   onTryAgain,
   numberOfCounter,
   gameResult,
@@ -23,7 +23,7 @@ const Monitor = ({
   return (
     <Container>
       {gameStage === "lobby" && (
-        <StartButton onClick={onStart}>Start</StartButton>
+        <StartButton onClick={onStartGame}>Start</StartButton>
       )}
       {gameStage === "game" && (
         <>

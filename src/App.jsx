@@ -4,30 +4,13 @@ import { Backdrop, Content } from "./App.styled";
 import { useState, useEffect } from "react";
 
 const App = () => {
-  // lobby, game, score
   const [gameStage, setGameStage] = useState("lobby");
   const [numberOfCounter, setNumberOfCounter] = useState(1);
   const [gameResult, setGameResult] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
   const [disabledButton, setDisabledButton] = useState(true);
 
-  useEffect(() => {
-    if (gameStage === "game") {
-      setTimeout(() => {
-        // if (
-        //   (numberOfCounter % 3 === 0 || numberOfCounter % 5 === 0) &&
-        //   isCorrect === null
-        // ) {
-        //   setGameResult(numberOfCounter);
-        //   setGameStage("score");
-        // }
-        setNumberOfCounter(numberOfCounter + 1);
-        setIsCorrect(null);
-      }, 2000);
-    }
-  }, [numberOfCounter, gameStage]);
-
-  const onStart = () => {
+  const onStartGame = () => {
     setGameResult(numberOfCounter);
     setGameStage("game");
   };
@@ -40,18 +23,31 @@ const App = () => {
     setDisabledButton(true);
   };
 
+  const onFinishGame = () => {
+    setGameResult(numberOfCounter);
+    setGameStage("score");
+  };
+
   if (gameStage === "score") {
     setTimeout(() => {
       setDisabledButton(false);
-    }, 2000);
+    }, 3000);
   }
+
+  useEffect(() => {
+    if (gameStage === "game") {
+      setTimeout(() => {
+        setNumberOfCounter(numberOfCounter + 1);
+        setIsCorrect(null);
+      }, 3000);
+    }
+  }, [numberOfCounter, gameStage]);
 
   const onClickFizzBuzz = () => {
     if (numberOfCounter % 3 === 0 && numberOfCounter % 5 === 0) {
       setIsCorrect("FizzAndBuzz");
     } else {
-      setGameResult(numberOfCounter);
-      setGameStage("score");
+      onFinishGame();
     }
   };
 
@@ -59,8 +55,7 @@ const App = () => {
     if (numberOfCounter % 3 === 0 && numberOfCounter % 5 !== 0) {
       setIsCorrect("Fizz");
     } else {
-      setGameResult(numberOfCounter);
-      setGameStage("score");
+      onFinishGame();
     }
   };
 
@@ -68,8 +63,15 @@ const App = () => {
     if (numberOfCounter % 5 === 0 && numberOfCounter % 3 !== 0) {
       setIsCorrect("Buzz");
     } else {
-      setGameResult(numberOfCounter);
-      setGameStage("score");
+      onFinishGame();
+    }
+  };
+
+  const onClickPass = () => {
+    if (numberOfCounter % 5 !== 0 && numberOfCounter % 3 !== 0) {
+      setIsCorrect("Pass");
+    } else {
+      onFinishGame();
     }
   };
 
@@ -78,7 +80,7 @@ const App = () => {
       <Content>
         <Monitor
           gameStage={gameStage}
-          onStart={onStart}
+          onStartGame={onStartGame}
           onTryAgain={onTryAgain}
           numberOfCounter={numberOfCounter}
           gameResult={gameResult}
@@ -88,6 +90,7 @@ const App = () => {
           onClickFizzBuzz={onClickFizzBuzz}
           onClickFizz={onClickFizz}
           onClickBuzz={onClickBuzz}
+          onClickPass={onClickPass}
           gameStage={gameStage}
           isCorrect={isCorrect}
         />

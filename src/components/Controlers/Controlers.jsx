@@ -3,6 +3,7 @@ import {
   FizzAndBuzz,
   ButtonFizzAndBuzz,
   ButtonFizzBuzz,
+  ButtonPass,
 } from "./Controlers.styled";
 
 const Controllers = ({
@@ -11,6 +12,7 @@ const Controllers = ({
   onClickBuzz,
   gameStage,
   isCorrect,
+  onClickPass,
 }) => {
   const isDisabled = () => {
     if (["lobby", "score"].includes(gameStage)) {
@@ -44,6 +46,13 @@ const Controllers = ({
           BUZZ
         </ButtonFizzBuzz>
       </FizzAndBuzz>
+      <ButtonPass
+        disabled={isDisabled()}
+        onClick={onClickPass}
+        isCorrect={isCorrect}
+      >
+        Pass
+      </ButtonPass>
     </Container>
   );
 };

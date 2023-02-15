@@ -76,7 +76,7 @@ export const TimerContant = styled.div`
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   height: 16px;
-  animation: loading 2s linear;
+  animation: loading 3s linear;
   @keyframes loading {
     0% {
       width: 0%;
@@ -125,7 +125,6 @@ export const TryButton = styled.button`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  /* animation: pulse 2s infinite ease-in-out; */
   transition: 0.3s;
   opacity: ${(props) => props.disabled && ".6"};
   animation: ${(props) =>
