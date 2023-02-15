@@ -31,7 +31,7 @@ const App = () => {
   if (gameStage === "score") {
     setTimeout(() => {
       setDisabledButton(false);
-    }, 3000);
+    }, 4000);
   }
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const App = () => {
       setTimeout(() => {
         setNumberOfCounter(numberOfCounter + 1);
         setIsCorrect(null);
-      }, 3000);
+      }, 4000);
     }
   }, [numberOfCounter, gameStage]);
 

@@ -76,7 +76,7 @@ export const TimerContant = styled.div`
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   height: 16px;
-  animation: loading 3s linear;
+  animation: loading 4s linear;
   @keyframes loading {
     0% {
       width: 0%;
